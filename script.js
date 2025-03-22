@@ -16,9 +16,9 @@ $(function() {
   });
 });
 
-function makeGraph(data, id) {
+const makeGraph = (data, id) => {
   nv.addGraph(function() {
-    var chart = nv.models.linePlusBarChart()
+    let chart = nv.models.linePlusBarChart()
         .margin({bottom: 80, left: 60, right: 60})
         .focusEnable(false)
         .x(function(d,i) {return new Date(d[0])})
@@ -33,7 +33,7 @@ function makeGraph(data, id) {
     chart.y2Axis.tickFormat(d3.format(',f')).showMaxMin(false);
     chart.bars.forceY([0]);
 
-    var chartData = d3.select(id)
+    let chartData = d3.select(id)
       .append("svg")
       .datum(data)
       .transition()
@@ -46,10 +46,10 @@ function makeGraph(data, id) {
   });
 }
 
-function processData(rows, title) {
-  var bar_data = [], line_data = [];
-  for(var i = 0; i < rows.length; i++) {
-    var row = rows[i];
+const processData = (rows, title) => {
+  let bar_data = [], line_data = [];
+  for(let i = 0; i < rows.length; i++) {
+    let row = rows[i];
     bar_data.push([row["date"], parseFloat(row["value"])]);
     line_data.push([row["date"], parseFloat(row["cumulative"])]);
   }
